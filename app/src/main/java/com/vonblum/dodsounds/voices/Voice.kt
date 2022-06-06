@@ -6,9 +6,9 @@ import com.vonblum.dodsounds.shared.Playable
 import com.vonblum.dodsounds.shared.soundplayer.SoundPlayer
 
 data class Voice(
-    val soundPlayer: SoundPlayer,
-    val filename: VoiceFilename,
-    val faction: VoiceFaction
+    private val soundPlayer: SoundPlayer,
+    private val filename: VoiceFilename,
+    private val faction: VoiceFaction
 ) : Entity(), Playable {
     override fun play(context: Context) {
         soundPlayer.play(context, filename.value)

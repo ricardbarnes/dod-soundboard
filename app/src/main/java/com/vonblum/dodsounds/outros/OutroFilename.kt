@@ -2,4 +2,4 @@ package com.vonblum.dodsounds.outros
 
 import com.vonblum.dodsounds.shared.Filename
 
-class OutroFilename(value: String) : Filename(value)
+class OutroFilename(override val value: String) : Filename(value)

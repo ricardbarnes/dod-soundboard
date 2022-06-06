@@ -2,4 +2,4 @@ package com.vonblum.dodsounds.weapons
 
 import com.vonblum.dodsounds.shared.Filename
 
-class WeaponFilename(value: String) : Filename(value)
+class WeaponFilename(override val value: String) : Filename(value)
