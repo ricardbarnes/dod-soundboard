@@ -1,6 +1,6 @@
 package com.vonblum.dodsounds.shared
 
-open class Faction(val faction: FactionEnum) {
+open class Faction(val value: FactionEnum) {
     enum class FactionEnum {
         GERMAN,
         US,
