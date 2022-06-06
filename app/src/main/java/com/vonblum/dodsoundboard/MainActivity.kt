@@ -2,6 +2,7 @@ package com.vonblum.dodsoundboard
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -13,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun playSound() {
+    fun playSound(view: View) {
         val fileDescriptor = assets.openFd(SOUND_URL)
 
         val player = MediaPlayer()
