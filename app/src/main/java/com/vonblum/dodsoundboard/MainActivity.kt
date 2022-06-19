@@ -1,24 +1,16 @@
 package com.vonblum.dodsoundboard
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.vonblum.dodsoundboard.backend.command.Command
-import com.vonblum.dodsoundboard.backend.command.CommandService
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-//    private val SOUND_URL = "voices/german/ger_backup.wav"
-
-    @Inject
-    lateinit var command: Command
-
-    @Inject
-    lateinit var commandService: CommandService
+    companion object {
+        const val SOUND_URL = "voices/german/ger_backup.wav"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,20 +18,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun playSound(view: View) {
-        val message = commandService.run()
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        val fileDescriptor = assets.openFd(SOUND_URL)
 
-//        val fileDescriptor = assets.openFd(SOUND_URL)
-//
-//        val player = MediaPlayer()
-//        player.setDataSource(
-//            fileDescriptor.fileDescriptor,
-//            fileDescriptor.startOffset,
-//            fileDescriptor.length
-//        )
-//        player.prepare()
-//        player.start()
-//
-//        Toast.makeText(this, "Pepe!", Toast.LENGTH_LONG).show()
+        val player = MediaPlayer()
+        player.setDataSource(
+            fileDescriptor.fileDescriptor,
+            fileDescriptor.startOffset,
+            fileDescriptor.length
+        )
+        player.prepare()
+        player.start()
+
+        Toast.makeText(this, "Pepe!", Toast.LENGTH_LONG).show()
     }
 }
