@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val SOUND_URL = "voices/german/ger_backup.wav"
+        const val SOUND_URL = "ambiences/airplane.wav"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
