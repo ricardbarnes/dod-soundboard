@@ -6,7 +6,7 @@ import com.vonblum.dodsoundboard.backend.ambiences.application.load.AmbiencesLoa
 import org.junit.Assert
 import org.junit.Test
 
-class AmbiencesLoaderIntegrationTest {
+class AmbiencesLoaderTest {
 
     lateinit var ambienceLoaderService: AmbiencesLoader
 

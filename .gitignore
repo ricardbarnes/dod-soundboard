@@ -9,3 +9,7 @@
 .cxx
 local.properties
 /app/src/main/assets/
+/app/build/generated/source/buildConfig/androidTest/debug/
+/app/build/generated/source/buildConfig/debug/
+/app/build/generated/ap_generated_sources/debug/out/
+/app/build/generated/ap_generated_sources/debugAndroidTest/out/
