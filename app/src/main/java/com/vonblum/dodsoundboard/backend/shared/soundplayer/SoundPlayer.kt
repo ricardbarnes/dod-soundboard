@@ -4,6 +4,6 @@ import android.content.Context
 
 interface SoundPlayer {
 
-    fun play(context: Context, filename: String)
+    fun play(filename: String, context: Context)
 
 }

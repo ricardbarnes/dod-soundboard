@@ -1,12 +1,14 @@
 package com.vonblum.dodsoundboard.backend.ambiences
 
-import com.vonblum.dodsoundboard.backend.ambiences.service.AmbienceLoaderService
+import com.vonblum.dodsoundboard.backend.ambiences.domain.Ambience
+import com.vonblum.dodsoundboard.backend.ambiences.domain.AmbienceRepository
+import com.vonblum.dodsoundboard.backend.ambiences.application.load.AmbiencesLoader
 import org.junit.Assert
 import org.junit.Test
 
-class AmbienceLoaderServiceIntegrationTest {
+class AmbiencesLoaderIntegrationTest {
 
-    lateinit var ambienceLoaderService: AmbienceLoaderService
+    lateinit var ambienceLoaderService: AmbiencesLoader
 
     @Test
     fun `it should load all ambiences`() {
@@ -23,10 +25,10 @@ class AmbienceLoaderServiceIntegrationTest {
                 return ambiences
             }
         }
-        ambienceLoaderService = AmbienceLoaderService(ambienceInMemoryRepository)
+        ambienceLoaderService = AmbiencesLoader(ambienceInMemoryRepository)
 
         // When
-        val loadedAmbiences = ambienceLoaderService.load()
+        val loadedAmbiences = ambienceLoaderService.main()
 
         // Then
         Assert.assertEquals(totalAmbiences, loadedAmbiences.size)

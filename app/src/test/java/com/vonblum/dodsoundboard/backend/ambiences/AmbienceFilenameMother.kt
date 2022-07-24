@@ -1,5 +1,7 @@
 package com.vonblum.dodsoundboard.backend.ambiences
 
+import com.vonblum.dodsoundboard.backend.ambiences.domain.AmbienceFilename
+
 class AmbienceFilenameMother {
 
     companion object {

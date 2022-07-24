@@ -1,4 +1,4 @@
-package com.vonblum.dodsoundboard.backend.ambiences
+package com.vonblum.dodsoundboard.backend.ambiences.domain
 
 import com.vonblum.dodsoundboard.backend.shared.Filename
 

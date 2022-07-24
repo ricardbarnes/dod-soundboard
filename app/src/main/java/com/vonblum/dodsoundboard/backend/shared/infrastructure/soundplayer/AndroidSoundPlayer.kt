@@ -5,7 +5,7 @@ import android.media.MediaPlayer
 import com.vonblum.dodsoundboard.backend.shared.soundplayer.SoundPlayer
 
 class AndroidSoundPlayer : SoundPlayer {
-    override fun play(context: Context, filename: String) {
+    override fun play(filename: String, context: Context) {
         val fileDescriptor = context.assets.openFd(filename)
         val player = MediaPlayer()
 
