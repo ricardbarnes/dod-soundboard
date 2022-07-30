@@ -31,9 +31,6 @@ class AmbiencesLoaderTest {
         val loadedAmbiences = ambienceLoaderService.main()
 
         // Then
-        Assert.assertEquals(totalAmbiences, loadedAmbiences.size)
-        for (i in 0 until totalAmbiences) {
-            Assert.assertEquals(ambiences[i], loadedAmbiences[i])
-        }
+        Assert.assertEquals(ambiences, loadedAmbiences)
     }
 }
