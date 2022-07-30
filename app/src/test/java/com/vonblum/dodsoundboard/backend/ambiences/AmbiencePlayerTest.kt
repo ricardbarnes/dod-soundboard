@@ -4,24 +4,25 @@ import android.content.Context
 import com.vonblum.dodsoundboard.backend.ambiences.application.play.AmbiencePlayer
 import com.vonblum.dodsoundboard.backend.shared.soundplayer.SoundPlayer
 import org.junit.Test
+import org.mockito.Mockito.mock
 
-class AmbiencePlayerTest { // TODO
+class AmbiencePlayerTest {
 
-    lateinit var soundPlayerMock: SoundPlayer
-
-    lateinit var contextMock: Context
-
-    lateinit var ambiencePlayer: AmbiencePlayer
-
+    /**
+     * This test cannot check if an ambience is actually being played.
+     * Please, use instrumented tests for that.
+     */
     @Test
     fun `it should play an ambience`() {
         // Given
-        ambiencePlayer = AmbiencePlayer(soundPlayerMock, contextMock)
+        val soundPlayer: SoundPlayer = mock(SoundPlayer::class.java)
+        val context: Context = mock(Context::class.java)
+        val ambiencePlayer = AmbiencePlayer(soundPlayer, context)
         val ambience = AmbienceMother.create(null)
 
         // When
         ambiencePlayer.main(ambience)
 
-        // Then
+        // Then no exception is thrown
     }
 }
