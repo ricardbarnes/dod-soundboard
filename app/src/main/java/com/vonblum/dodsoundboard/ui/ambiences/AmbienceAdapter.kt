@@ -13,12 +13,18 @@ class AmbienceAdapter(private val ambienceList: List<Ambience>) :
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.ambience_row, parent, false)
-        view.setOnClickListener(AmbienceTouchListener(parent.context))
-        return AmbienceViewHolder(view)
+        return AmbienceViewHolder(view, parent.context)
     }
 
     override fun onBindViewHolder(holder: AmbienceViewHolder, position: Int) {
-        holder.ambienceId.text = ambienceList[position].filename().value
+        val ambience = ambienceList[position]
+        holder.ambienceId.text = ambience.filename().value
+        holder.itemView.setOnClickListener(
+            AmbienceTouchListener(
+                holder.context,
+                ambience
+            )
+        )
     }
 
     override fun getItemCount(): Int {
