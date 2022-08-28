@@ -21,13 +21,19 @@ class MainActivity : AppCompatActivity() {
             AmbienceId(UUID.randomUUID()),
             AmbienceFilename("pepe.wav")
         )
-        val ambiences = listOf(ambience1)
+        val ambience2 = Ambience(
+            AmbienceId(UUID.randomUUID()),
+            AmbienceFilename("peter.wav")
+        )
+        val ambience3 = Ambience(
+            AmbienceId(UUID.randomUUID()),
+            AmbienceFilename("chocolate.wav")
+        )
+        val ambiences = listOf(ambience1, ambience2, ambience3)
 
         val recyclerView = findViewById<RecyclerView>(R.id.ambiences)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val ambiencesAdapter = AmbienceAdapter(ambiences)
         recyclerView.adapter = ambiencesAdapter
-        val ambienceTouchListener = AmbienceTouchListener(this) // TODO
-        recyclerView.setOnClickListener(ambienceTouchListener)
     }
 }
