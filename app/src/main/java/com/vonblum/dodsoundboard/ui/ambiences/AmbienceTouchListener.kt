@@ -2,12 +2,16 @@ package com.vonblum.dodsoundboard.ui.ambiences
 
 import android.content.Context
 import android.view.View
-import android.widget.Toast
 import com.vonblum.dodsoundboard.backend.ambiences.domain.Ambience
+import com.vonblum.dodsoundboard.backend.shared.soundplayer.SoundPlayer
 
-class AmbienceTouchListener(private val context: Context, private val ambience: Ambience) :
+class AmbienceTouchListener(
+    private val context: Context,
+    private val ambience: Ambience,
+    private val soundPlayer: SoundPlayer
+) :
     View.OnClickListener {
     override fun onClick(p0: View?) {
-        Toast.makeText(context, ambience.filename().value, Toast.LENGTH_SHORT).show()
+        soundPlayer.play(ambience.filename().value, context)
     }
 }

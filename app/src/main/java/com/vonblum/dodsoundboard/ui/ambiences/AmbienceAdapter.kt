@@ -5,8 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vonblum.dodsoundboard.R
 import com.vonblum.dodsoundboard.backend.ambiences.domain.Ambience
+import com.vonblum.dodsoundboard.backend.shared.soundplayer.SoundPlayer
 
-class AmbienceAdapter(private val ambienceList: List<Ambience>) :
+class AmbienceAdapter(
+    private val ambienceList: List<Ambience>,
+    private val soundPlayer: SoundPlayer
+) :
     RecyclerView.Adapter<AmbienceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AmbienceViewHolder {
@@ -22,7 +26,8 @@ class AmbienceAdapter(private val ambienceList: List<Ambience>) :
         holder.itemView.setOnClickListener(
             AmbienceTouchListener(
                 holder.context,
-                ambience
+                ambience,
+                soundPlayer
             )
         )
     }
