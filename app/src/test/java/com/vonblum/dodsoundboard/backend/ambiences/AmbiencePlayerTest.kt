@@ -18,7 +18,7 @@ class AmbiencePlayerTest {
         val soundPlayer: SoundPlayer = mock(SoundPlayer::class.java)
         val context: Context = mock(Context::class.java)
         val ambiencePlayer = AmbiencePlayer(soundPlayer, context)
-        val ambience = AmbienceMother.create(null)
+        val ambience = AmbienceMother.create(null, null)
 
         // When
         ambiencePlayer.main(ambience)

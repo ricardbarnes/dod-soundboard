@@ -17,7 +17,7 @@ class AmbiencesLoaderTest {
         val ambiences = mutableListOf<Ambience>()
 
         for (i in 0 until totalAmbiences) {
-            ambiences.add(AmbienceMother.create(null))
+            ambiences.add(AmbienceMother.create(null, null))
         }
 
         val ambienceInMemoryRepository = object : AmbienceRepository {

@@ -22,7 +22,7 @@ class AmbienceAdapter(
 
     override fun onBindViewHolder(holder: AmbienceViewHolder, position: Int) {
         val ambience = ambienceList[position]
-        holder.ambienceId.text = ambience.filename().value
+        holder.ambienceId.text = ambience.uri().value
         holder.itemView.setOnClickListener(
             AmbienceTouchListener(
                 holder.context,

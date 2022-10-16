@@ -12,6 +12,6 @@ class AmbienceTouchListener(
 ) :
     View.OnClickListener {
     override fun onClick(p0: View?) {
-        soundPlayer.play(ambience.filename().value, context)
+        soundPlayer.play(ambience.uri().value, context)
     }
 }

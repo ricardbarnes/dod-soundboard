@@ -4,10 +4,10 @@ import com.vonblum.dodsoundboard.backend.shared.Aggregate
 
 data class Ambience(
     private val id: AmbienceId,
-    private val filename: AmbienceFilename
+    private val uri: AmbienceUri
 ) : Aggregate() {
 
-    fun filename(): AmbienceFilename {
-        return filename
+    fun uri(): AmbienceUri {
+        return uri
     }
 }

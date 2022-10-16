@@ -9,7 +9,7 @@ class AmbiencePlayer(
     private val context: Context
 ) {
     fun main(ambience: Ambience) {
-        val filename = ambience.filename().value
+        val filename = ambience.uri().value
         soundPlayer.play(filename, context)
     }
 }

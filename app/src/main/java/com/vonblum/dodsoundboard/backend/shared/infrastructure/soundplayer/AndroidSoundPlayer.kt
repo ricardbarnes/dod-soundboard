@@ -8,7 +8,7 @@ class AndroidSoundPlayer : SoundPlayer {
     override fun play(filename: String, context: Context) {
         val fileDescriptor = context.assets.openFd(filename)
         val player = MediaPlayer()
-
+        
         player.setDataSource(
             fileDescriptor.fileDescriptor,
             fileDescriptor.startOffset,

@@ -1,8 +1,8 @@
 package com.vonblum.dodsoundboard.backend.ambiences
 
-import com.vonblum.dodsoundboard.backend.ambiences.domain.AmbienceFilename
+import com.vonblum.dodsoundboard.backend.ambiences.domain.AmbienceUri
 
-class AmbienceFilenameMother {
+class AmbienceUriMother {
 
     companion object {
         private const val MIN_LENGTH = 1
@@ -18,8 +18,8 @@ class AmbienceFilenameMother {
             return filename + EXTENSION
         }
 
-        fun create(filename: String?): AmbienceFilename {
-            return AmbienceFilename(filename ?: createRandom())
+        fun create(uri: String?): AmbienceUri {
+            return AmbienceUri(uri ?: createRandom())
         }
     }
 
