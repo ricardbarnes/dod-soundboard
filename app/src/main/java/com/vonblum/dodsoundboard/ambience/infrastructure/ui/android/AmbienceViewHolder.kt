@@ -1,4 +1,4 @@
-package com.vonblum.dodsoundboard.ui.ambiences
+package com.vonblum.dodsoundboard.ambience.infrastructure.ui.android
 
 import android.content.Context
 import android.view.View

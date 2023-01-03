@@ -1,15 +1,15 @@
-package com.vonblum.dodsoundboard.ui.ambiences
+package com.vonblum.dodsoundboard.ambience.infrastructure.ui.android
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vonblum.dodsoundboard.R
-import com.vonblum.dodsoundboard.backend.ambiences.domain.Ambience
-import com.vonblum.dodsoundboard.backend.shared.soundplayer.SoundPlayer
+import com.vonblum.dodsoundboard.ambience.domain.model.Ambience
+import com.vonblum.dodsoundboard.ambience.domain.ports.AmbiencePlayer
 
 class AmbienceAdapter(
     private val ambienceList: List<Ambience>,
-    private val soundPlayer: SoundPlayer
+    private val ambiencePlayer: AmbiencePlayer
 ) :
     RecyclerView.Adapter<AmbienceViewHolder>() {
 
@@ -22,12 +22,12 @@ class AmbienceAdapter(
 
     override fun onBindViewHolder(holder: AmbienceViewHolder, position: Int) {
         val ambience = ambienceList[position]
-        holder.ambienceId.text = ambience.uri().value
+        holder.ambienceId.text = ambience.uri.value.path
         holder.itemView.setOnClickListener(
             AmbienceTouchListener(
                 holder.context,
                 ambience,
-                soundPlayer
+                ambiencePlayer
             )
         )
     }

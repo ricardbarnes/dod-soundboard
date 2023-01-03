@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vonblum.dodsoundboard.backend.ambiences.domain.Ambience
-import com.vonblum.dodsoundboard.backend.ambiences.domain.AmbienceUri
-import com.vonblum.dodsoundboard.backend.ambiences.domain.AmbienceId
-import com.vonblum.dodsoundboard.backend.shared.infrastructure.soundplayer.AndroidSoundPlayer
-import com.vonblum.dodsoundboard.ui.ambiences.AmbienceAdapter
+import com.vonblum.dodsoundboard.ambience.domain.model.Ambience
+import com.vonblum.dodsoundboard.ambience.domain.model.AmbienceUri
+import com.vonblum.dodsoundboard.ambience.domain.model.AmbienceId
+import com.vonblum.dodsoundboard.ambience.infrastructure.ports.player.AndroidAmbiencePlayer
+import com.vonblum.dodsoundboard.ambience.infrastructure.ui.android.AmbienceAdapter
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.ambiences)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val ambiencesAdapter = AmbienceAdapter(ambiences, AndroidSoundPlayer())
+        val ambiencesAdapter = AmbienceAdapter(ambiences, AndroidAmbiencePlayer())
         recyclerView.adapter = ambiencesAdapter
     }
 }

@@ -1,8 +1,9 @@
-package com.vonblum.dodsoundboard.backend.ambiences.infrastructure.repository
+package com.vonblum.dodsoundboard.ambience.infrastructure.ports.repository
 
 import android.content.res.AssetManager
-import com.vonblum.dodsoundboard.backend.ambiences.domain.Ambience
-import com.vonblum.dodsoundboard.backend.ambiences.domain.AmbienceRepository
+import com.vonblum.dodsoundboard.ambience.domain.model.Ambience
+import com.vonblum.dodsoundboard.ambience.domain.ports.AmbienceRepository
+import java.util.Optional
 
 class AmbienceAndroidRepositoryImpl(
     private val assetManager: AssetManager,
@@ -10,13 +11,13 @@ class AmbienceAndroidRepositoryImpl(
 ) :
     AmbienceRepository {
 
-    override fun findAll(): List<Ambience> {
+    override fun findAll(): Optional<List<Ambience>> {
         val ambiences = assetManager.list(assetBasePath)
 
         for (ambience: String in ambiences!!) {
             // TODO
         }
 
-        return listOf()
+        return // TODO
     }
 }
