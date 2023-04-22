@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vonblum.dodsoundboard.R
 import cat.vonblum.dodsoundboard.ambience.provider.AndroidAmbienceProvider
 import cat.vonblum.dodsoundboard.ambience.ui.AmbienceAdapter
-import cat.vonblum.dodsoundboard.domain.application.play.AmbiencePlayer
-import cat.vonblum.dodsoundboard.domain.core.model.Ambience
+import cat.vonblum.dodsoundboard.ambiences.application.play.AmbiencePlayer
+import cat.vonblum.dodsoundboard.ambiences.model.Ambience
+import cat.vonblum.dodsoundboard.ambiences.model.AmbienceName
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,9 +17,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val ambience1 = Ambience.create(cat.vonblum.dodsoundboard.domain.core.model.AmbienceName("airplane"))
-        val ambience2 = Ambience.create(cat.vonblum.dodsoundboard.domain.core.model.AmbienceName("bell"))
-        val ambience3 = Ambience.create(cat.vonblum.dodsoundboard.domain.core.model.AmbienceName("creakmetal1"))
+        val ambience1 = Ambience.create(AmbienceName("airplane"))
+        val ambience2 = Ambience.create(AmbienceName("bell"))
+        val ambience3 = Ambience.create(AmbienceName("creakmetal1"))
 
         val ambiences = listOf(ambience1, ambience2, ambience3)
 

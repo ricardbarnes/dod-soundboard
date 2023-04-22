@@ -1,8 +1,8 @@
 package cat.vonblum.dodsoundboard.ambience.repository
 
 import android.content.res.AssetManager
-import cat.vonblum.dodsoundboard.domain.core.model.Ambience
-import cat.vonblum.dodsoundboard.domain.core.ports.AmbienceRepository
+import cat.vonblum.dodsoundboard.ambiences.model.Ambience
+import cat.vonblum.dodsoundboard.ambiences.ports.AmbienceRepository
 import java.util.ArrayList
 
 class AndroidAmbienceRepository(

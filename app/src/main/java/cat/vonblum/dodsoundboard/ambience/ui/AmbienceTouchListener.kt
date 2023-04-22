@@ -2,12 +2,12 @@ package cat.vonblum.dodsoundboard.ambience.ui
 
 import android.content.Context
 import android.view.View
-import cat.vonblum.dodsoundboard.domain.core.model.Ambience
+import cat.vonblum.dodsoundboard.ambiences.model.Ambience
 
 class AmbienceTouchListener(
     private val context: Context,
     private val ambience: Ambience,
-    private val ambiencePlayer: cat.vonblum.dodsoundboard.domain.application.play.AmbiencePlayer
+    private val ambiencePlayer: cat.vonblum.dodsoundboard.ambiences.application.play.AmbiencePlayer
 ) :
     View.OnClickListener {
 

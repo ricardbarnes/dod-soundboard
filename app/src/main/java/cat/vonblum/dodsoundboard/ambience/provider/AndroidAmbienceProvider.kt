@@ -2,8 +2,8 @@ package cat.vonblum.dodsoundboard.ambience.provider
 
 import android.content.Context
 import android.media.MediaPlayer
-import cat.vonblum.dodsoundboard.domain.core.model.Ambience
-import cat.vonblum.dodsoundboard.domain.core.ports.AmbienceProvider
+import cat.vonblum.dodsoundboard.ambiences.model.Ambience
+import cat.vonblum.dodsoundboard.ambiences.ports.AmbienceProvider
 
 class AndroidAmbienceProvider(private val context: Context) : AmbienceProvider {
 
