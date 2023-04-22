@@ -3,8 +3,8 @@ package cat.vonblum.dodsoundboard.ambience.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cat.vonblum.dodsoundboard.ambiences.application.play.AmbiencePlayer
-import cat.vonblum.dodsoundboard.ambiences.model.Ambience
+import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayer
+import cat.vonblum.dodsoundboard.ambience.model.Ambience
 import com.vonblum.dodsoundboard.R
 
 class AmbienceAdapter(

@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vonblum.dodsoundboard.R
 import cat.vonblum.dodsoundboard.ambience.provider.AndroidAmbienceProvider
 import cat.vonblum.dodsoundboard.ambience.ui.AmbienceAdapter
-import cat.vonblum.dodsoundboard.ambiences.application.play.AmbiencePlayer
-import cat.vonblum.dodsoundboard.ambiences.model.Ambience
-import cat.vonblum.dodsoundboard.ambiences.model.AmbienceName
+import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayer
+import cat.vonblum.dodsoundboard.ambience.model.Ambience
+import cat.vonblum.dodsoundboard.ambience.model.AmbienceName
 
 class MainActivity : AppCompatActivity() {
 
