@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.vonblum.dodsoundboard.ambience.domain.application.play.AmbiencePlayer
 import com.vonblum.dodsoundboard.ambience.domain.model.Ambience
-import com.vonblum.dodsoundboard.ambience.domain.model.AmbienceUri
-import com.vonblum.dodsoundboard.ambience.domain.model.AmbienceId
-import com.vonblum.dodsoundboard.ambience.infrastructure.ports.player.AndroidAmbiencePlayer
-import com.vonblum.dodsoundboard.ambience.infrastructure.ui.android.AmbienceAdapter
-import java.util.*
+import com.vonblum.dodsoundboard.ambience.domain.model.AmbienceName
+import com.vonblum.dodsoundboard.ambience.domain.ports.AmbienceProvider
+import com.vonblum.dodsoundboard.ambience.infrastructure.ports.AndroidAmbienceProvider
+import com.vonblum.dodsoundboard.ambience.infrastructure.ui.AmbienceAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,24 +17,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val ambience1 = Ambience(
-            AmbienceId(UUID.randomUUID()),
-            AmbienceUri("ambiences/airplane.wav")
-        )
-        val ambience2 = Ambience(
-            AmbienceId(UUID.randomUUID()),
-            AmbienceUri("ambiences/bell.wav")
-        )
-        val ambience3 = Ambience(
-            AmbienceId(UUID.randomUUID()),
-            AmbienceUri("ambiences/creakmetal1.wav")
-        )
+        val ambience1 = Ambience.create(AmbienceName("airplane"))
+        val ambience2 = Ambience.create(AmbienceName("bell"))
+        val ambience3 = Ambience.create(AmbienceName("creakmetal1"))
+
         val ambiences = listOf(ambience1, ambience2, ambience3)
 
         val recyclerView = findViewById<RecyclerView>(R.id.ambiences)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val ambiencesAdapter = AmbienceAdapter(ambiences, AndroidAmbiencePlayer())
+        val ambienceProvider = AndroidAmbienceProvider(applicationContext)
+        val ambiencesAdapter =
+            AmbienceAdapter(ambiences, AmbiencePlayer(ambienceProvider))
         recyclerView.adapter = ambiencesAdapter
     }
 }

@@ -1,6 +1,6 @@
-package com.vonblum.dodsoundboard.backend.ambiences
+package com.vonblum.dodsoundboard.ambience
 
-import com.vonblum.dodsoundboard.backend.ambiences.domain.AmbienceUri
+import com.vonblum.dodsoundboard.ambience.domain.model.AmbienceName
 
 class AmbienceUriMother {
 
@@ -18,8 +18,8 @@ class AmbienceUriMother {
             return filename + EXTENSION
         }
 
-        fun create(uri: String?): AmbienceUri {
-            return AmbienceUri(uri ?: createRandom())
+        fun create(uri: String?): AmbienceName {
+            return AmbienceName(uri ?: createRandom())
         }
     }
 

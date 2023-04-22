@@ -1,15 +1,14 @@
-package com.vonblum.dodsoundboard.backend.ambiences
+package com.vonblum.dodsoundboard.ambience
 
-import com.vonblum.dodsoundboard.backend.ambiences.domain.Ambience
-import com.vonblum.dodsoundboard.backend.ambiences.domain.AmbienceId
-import com.vonblum.dodsoundboard.backend.ambiences.domain.AmbienceUri
+import com.vonblum.dodsoundboard.ambience.domain.model.Ambience
+import com.vonblum.dodsoundboard.ambience.domain.model.AmbienceName
 
 class AmbienceMother {
 
     companion object {
         fun create(
             id: AmbienceId?,
-            uri: AmbienceUri?
+            uri: AmbienceName?
         ): Ambience {
             return Ambience(
                 id ?: AmbienceIdMother.create(null),
