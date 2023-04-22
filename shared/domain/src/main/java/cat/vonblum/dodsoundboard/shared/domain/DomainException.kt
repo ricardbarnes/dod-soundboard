@@ -1,4 +1,4 @@
-package cat.vonblum.dodsoundboard.shared.exception
+package cat.vonblum.dodsoundboard.shared.domain
 
 abstract class DomainException(
     override val message: String? = null,
