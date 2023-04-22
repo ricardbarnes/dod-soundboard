@@ -1,4 +1,4 @@
-package cat.vonblum.dodsoundboard.ambience.infrastructure.ui
+package cat.vonblum.dodsoundboard.ambience.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

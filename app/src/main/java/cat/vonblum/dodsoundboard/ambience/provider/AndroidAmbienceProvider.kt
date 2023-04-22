@@ -1,4 +1,4 @@
-package cat.vonblum.dodsoundboard.ambience.infrastructure.provider
+package cat.vonblum.dodsoundboard.ambience.provider
 
 import android.content.Context
 import android.media.MediaPlayer

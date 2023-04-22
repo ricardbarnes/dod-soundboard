@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vonblum.dodsoundboard.R
-import cat.vonblum.dodsoundboard.ambience.infrastructure.provider.AndroidAmbienceProvider
-import cat.vonblum.dodsoundboard.ambience.infrastructure.ui.AmbienceAdapter
+import cat.vonblum.dodsoundboard.ambience.provider.AndroidAmbienceProvider
+import cat.vonblum.dodsoundboard.ambience.ui.AmbienceAdapter
+import cat.vonblum.dodsoundboard.domain.application.play.AmbiencePlayer
 import cat.vonblum.dodsoundboard.domain.core.model.Ambience
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         val ambienceProvider = AndroidAmbienceProvider(applicationContext)
         val ambiencesAdapter =
             AmbienceAdapter(ambiences,
-                cat.vonblum.dodsoundboard.domain.application.play.AmbiencePlayer(ambienceProvider)
+                AmbiencePlayer(ambienceProvider)
             )
         recyclerView.adapter = ambiencesAdapter
     }

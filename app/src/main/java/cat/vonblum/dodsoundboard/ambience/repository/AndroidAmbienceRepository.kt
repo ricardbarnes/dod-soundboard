@@ -1,4 +1,4 @@
-package cat.vonblum.dodsoundboard.ambience.infrastructure.repository
+package cat.vonblum.dodsoundboard.ambience.repository
 
 import android.content.res.AssetManager
 import cat.vonblum.dodsoundboard.domain.core.model.Ambience
