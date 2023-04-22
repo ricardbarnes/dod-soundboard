@@ -1,7 +1,7 @@
 package cat.vonblum.dodsoundboard.domain.application.find
 
-import cat.vonblum.dodsoundboard.domain.model.Ambience
-import cat.vonblum.dodsoundboard.domain.ports.AmbienceRepository
+import cat.vonblum.dodsoundboard.domain.core.model.Ambience
+import cat.vonblum.dodsoundboard.domain.core.ports.AmbienceRepository
 
 class AmbienceFinder(private val repository: AmbienceRepository) {
 

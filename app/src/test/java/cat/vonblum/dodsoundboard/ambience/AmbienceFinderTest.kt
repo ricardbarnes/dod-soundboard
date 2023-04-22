@@ -8,7 +8,7 @@ import org.junit.Test
 
 class AmbienceFinderTest {
 
-    lateinit var ambienceLoaderService: AmbienceFinder
+    lateinit var ambienceLoaderService: cat.vonblum.dodsoundboard.domain.application.find.AmbienceFinder
 
     @Test
     fun `it should load all ambiences`() {
@@ -25,7 +25,9 @@ class AmbienceFinderTest {
                 return ambiences
             }
         }
-        ambienceLoaderService = AmbienceFinder(ambienceInMemoryRepository)
+        ambienceLoaderService = cat.vonblum.dodsoundboard.domain.application.find.AmbienceFinder(
+            ambienceInMemoryRepository
+        )
 
         // When
         val loadedAmbiences = ambienceLoaderService.execute()

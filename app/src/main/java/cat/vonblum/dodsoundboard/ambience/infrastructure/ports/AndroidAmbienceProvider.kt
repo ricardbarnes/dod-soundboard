@@ -2,17 +2,14 @@ package cat.vonblum.dodsoundboard.ambience.infrastructure.ports
 
 import android.content.Context
 import android.media.MediaPlayer
-import cat.vonblum.dodsoundboard.domain.model.Ambience
-import cat.vonblum.dodsoundboard.domain.ports.AmbienceProvider
+import cat.vonblum.dodsoundboard.domain.core.model.Ambience
+import cat.vonblum.dodsoundboard.domain.core.ports.AmbienceProvider
 
 class AndroidAmbienceProvider(private val context: Context) : AmbienceProvider {
 
     companion object {
-
         const val FOLDER = "ambiences"
-
         const val FILE_EXTENSION = "wav"
-
     }
 
     override fun send(ambience: Ambience) {
