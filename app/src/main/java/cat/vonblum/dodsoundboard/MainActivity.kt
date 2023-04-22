@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vonblum.dodsoundboard.R
-import cat.vonblum.dodsoundboard.ambience.infrastructure.ports.AndroidAmbienceProvider
+import cat.vonblum.dodsoundboard.ambience.infrastructure.provider.AndroidAmbienceProvider
 import cat.vonblum.dodsoundboard.ambience.infrastructure.ui.AmbienceAdapter
 import cat.vonblum.dodsoundboard.domain.core.model.Ambience
 
