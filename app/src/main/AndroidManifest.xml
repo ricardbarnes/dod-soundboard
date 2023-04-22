@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/DoDSoundboard">
         <activity
-            android:name=".MainActivity"
+            android:name="cat.vonblum.dodsoundboard.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
