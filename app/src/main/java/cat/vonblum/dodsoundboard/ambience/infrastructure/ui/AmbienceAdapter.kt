@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vonblum.dodsoundboard.R
-import cat.vonblum.dodsoundboard.ambience.domain.application.play.AmbiencePlayer
-import cat.vonblum.dodsoundboard.ambience.domain.model.Ambience
+import cat.vonblum.dodsoundboard.domain.application.play.AmbiencePlayer
+import cat.vonblum.dodsoundboard.domain.model.Ambience
 
 class AmbienceAdapter(
     private val ambienceList: List<Ambience>,

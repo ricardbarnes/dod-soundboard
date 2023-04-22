@@ -1,6 +1,6 @@
 package cat.vonblum.dodsoundboard.ambience
 
-import cat.vonblum.dodsoundboard.ambience.domain.model.AmbienceName
+import cat.vonblum.dodsoundboard.domain.model.AmbienceName
 
 class AmbienceUriMother {
 

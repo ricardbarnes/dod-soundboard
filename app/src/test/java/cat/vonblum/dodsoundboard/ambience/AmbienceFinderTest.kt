@@ -1,8 +1,8 @@
 package cat.vonblum.dodsoundboard.ambience
 
-import cat.vonblum.dodsoundboard.ambience.domain.model.Ambience
-import cat.vonblum.dodsoundboard.ambience.domain.ports.AmbienceRepository
-import cat.vonblum.dodsoundboard.ambience.domain.application.find.AmbienceFinder
+import cat.vonblum.dodsoundboard.domain.model.Ambience
+import cat.vonblum.dodsoundboard.domain.ports.AmbienceRepository
+import cat.vonblum.dodsoundboard.domain.application.find.AmbienceFinder
 import org.junit.Assert
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package cat.vonblum.dodsoundboard.ambience.domain.model
+package cat.vonblum.dodsoundboard.domain.model
 
 data class Ambience(val name: AmbienceName) {
 
