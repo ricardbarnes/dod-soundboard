@@ -2,7 +2,9 @@ package cat.vonblum.dodsoundboard.ambience.repository
 
 import android.content.res.AssetManager
 import cat.vonblum.dodsoundboard.ambience.model.Ambience
+import cat.vonblum.dodsoundboard.ambience.model.AmbienceName
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceRepository
+import com.vonblum.dodsoundboard.shared.infrastructure.android.AndroidConfig
 
 class AndroidAmbienceRepository(
     private val assetManager: AssetManager,
@@ -10,13 +12,10 @@ class AndroidAmbienceRepository(
 ) : AmbienceRepository {
 
     override fun findAll(): List<Ambience> {
-        val ambiences = assetManager.list(assetFolder)
-
-        for (ambience: String in ambiences!!) {
-            // TODO
-        }
-
-        return ArrayList() // TODO
+        return assetManager.list(assetFolder)
+            ?.map { it.substringBeforeLast(AndroidConfig.FILE_EXTENSION_DELIMITER) }
+            ?.map { AmbienceName(it) }
+            ?.map { Ambience(it) } ?: ArrayList()
     }
 
 }
