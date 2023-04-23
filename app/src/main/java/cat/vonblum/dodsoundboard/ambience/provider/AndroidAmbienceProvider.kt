@@ -18,15 +18,15 @@ class AndroidAmbienceProvider(private val context: Context) : AmbienceProvider {
                 context.resources.getString(R.string.file_extension_delimiter)
             }${context.resources.getString(R.string.sound_file_extension)}"
         val fileDescriptor = context.assets.openFd(assetPath)
-        val player = MediaPlayer()
+        val mediaPlayer = MediaPlayer()
 
-        player.setDataSource(
+        mediaPlayer.setDataSource(
             fileDescriptor.fileDescriptor,
             fileDescriptor.startOffset,
             fileDescriptor.length
         )
-        player.prepare()
-        player.start()
+        mediaPlayer.prepare()
+        mediaPlayer.start()
     }
 
 }

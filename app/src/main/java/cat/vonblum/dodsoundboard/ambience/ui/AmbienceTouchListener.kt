@@ -1,17 +1,18 @@
 package cat.vonblum.dodsoundboard.ambience.ui
 
 import android.view.View
-import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayer
-import cat.vonblum.dodsoundboard.ambience.model.Ambience
+import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayerCommand
+import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayerCommandHandler
 
 class AmbienceTouchListener(
-    private val ambience: Ambience,
-    private val ambiencePlayer: AmbiencePlayer
+    private val ambienceName: String,
+    private val ambiencePlayerCommandHandler: AmbiencePlayerCommandHandler
 ) :
     View.OnClickListener {
 
     override fun onClick(p0: View?) {
-        ambiencePlayer.execute(ambience.name)
+        val ambiencePlayerCommand = AmbiencePlayerCommand(ambienceName)
+        ambiencePlayerCommandHandler.handleSynchronously(ambiencePlayerCommand)
     }
 
 }
