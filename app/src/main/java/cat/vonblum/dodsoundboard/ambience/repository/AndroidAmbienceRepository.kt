@@ -6,12 +6,11 @@ import cat.vonblum.dodsoundboard.ambience.ports.AmbienceRepository
 
 class AndroidAmbienceRepository(
     private val assetManager: AssetManager,
-    private val assetBasePath: String
-) :
-    AmbienceRepository {
+    private val assetFolder: String,
+) : AmbienceRepository {
 
     override fun findAll(): List<Ambience> {
-        val ambiences = assetManager.list(assetBasePath)
+        val ambiences = assetManager.list(assetFolder)
 
         for (ambience: String in ambiences!!) {
             // TODO
