@@ -22,11 +22,7 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.ambiences)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val ambienceProvider = AndroidAmbienceProvider(
-            applicationContext,
-            resources.getString(R.string.ambience_asset_folder),
-            resources.getString(R.string.sound_file_extension)
-        )
+        val ambienceProvider = AndroidAmbienceProvider(applicationContext)
         val ambiencesAdapter = AmbienceAdapter(ambiences, AmbiencePlayer(ambienceProvider))
         recyclerView.adapter = ambiencesAdapter
     }

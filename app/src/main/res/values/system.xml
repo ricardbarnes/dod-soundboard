@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources> <!-- Why are you even here? -->
+    <string name="file_extension_delimiter">.</string>
+    <string name="system_path_separator">/</string>
+</resources>
