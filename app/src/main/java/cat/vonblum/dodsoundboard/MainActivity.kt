@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity() {
         val ambienceRepository = AndroidAmbienceRepository(applicationContext)
         val ambiencesFinder = AmbiencesFinder(ambienceRepository)
         val ambiencesFinderQueryHandler = AmbiencesFinderQueryHandler(ambiencesFinder)
-        val ambiencesResponse = ambiencesFinder.execute()
-        ambiencesFinderQueryHandler.handleSynchronously(FindAmbiencesQuery())
-        val ambienceNamesList = ambiencesResponse.map { it.name.value }
+        val ambiencesFinderResponse =
+            ambiencesFinderQueryHandler.handleSynchronously(FindAmbiencesQuery())
+        val ambienceNamesList = ambiencesFinderResponse.nameList.map { it }
         val ambienceProvider = AndroidAmbienceProvider(applicationContext)
         val ambiencePlayer = AmbiencePlayer(ambienceProvider)
         val ambiencePlayerCommandHandler = AmbiencePlayerCommandHandler(ambiencePlayer)
