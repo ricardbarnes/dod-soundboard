@@ -14,9 +14,7 @@ class AndroidAmbienceProvider(private val context: Context) : AmbienceProvider {
 
     override fun send(ambience: Ambience) {
         val assetPath = FOLDER + "/" + ambience.name.value + "." + FILE_EXTENSION
-        val fileDescriptor =
-            context.assets.openFd(assetPath)
-
+        val fileDescriptor = context.assets.openFd(assetPath)
         val player = MediaPlayer()
 
         player.setDataSource(

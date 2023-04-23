@@ -1,4 +1,4 @@
-package cat.vonblum.dodsoundboard.shared.bus.query
+package cat.vonblum.dodsoundboard.shared.domain.bus.query
 
 interface QueryBus {
 

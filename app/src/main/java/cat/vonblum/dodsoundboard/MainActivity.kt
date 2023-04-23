@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vonblum.dodsoundboard.R
-import cat.vonblum.dodsoundboard.ambience.provider.AndroidAmbienceProvider
-import cat.vonblum.dodsoundboard.ambience.ui.AmbienceAdapter
 import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayer
 import cat.vonblum.dodsoundboard.ambience.model.Ambience
 import cat.vonblum.dodsoundboard.ambience.model.AmbienceName
+import cat.vonblum.dodsoundboard.ambience.provider.AndroidAmbienceProvider
+import cat.vonblum.dodsoundboard.ambience.ui.AmbienceAdapter
+import com.vonblum.dodsoundboard.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,10 +27,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val ambienceProvider = AndroidAmbienceProvider(applicationContext)
-        val ambiencesAdapter =
-            AmbienceAdapter(ambiences,
-                AmbiencePlayer(ambienceProvider)
-            )
+        val ambiencesAdapter = AmbienceAdapter(ambiences, AmbiencePlayer(ambienceProvider))
         recyclerView.adapter = ambiencesAdapter
     }
 }

@@ -5,9 +5,9 @@ import cat.vonblum.dodsoundboard.ambience.ports.AmbienceRepository
 import org.junit.Assert
 import org.junit.Test
 
-class AmbienceFinderTest {
+class AmbiencesFinderTest {
 
-    lateinit var ambienceLoaderService: cat.vonblum.dodsoundboard.ambience.application.find.AmbienceFinder
+    lateinit var ambienceLoaderService: cat.vonblum.dodsoundboard.ambience.application.find.AmbiencesFinder
 
     @Test
     fun `it should load all ambiences`() {
@@ -24,7 +24,7 @@ class AmbienceFinderTest {
                 return ambiences
             }
         }
-        ambienceLoaderService = cat.vonblum.dodsoundboard.ambience.application.find.AmbienceFinder(
+        ambienceLoaderService = cat.vonblum.dodsoundboard.ambience.application.find.AmbiencesFinder(
             ambienceInMemoryRepository
         )
 

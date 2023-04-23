@@ -25,7 +25,6 @@ class AmbienceAdapter(
         holder.ambienceId.text = ambience.name.value
         holder.itemView.setOnClickListener(
             AmbienceTouchListener(
-                holder.context,
                 ambience,
                 ambiencePlayer
             )

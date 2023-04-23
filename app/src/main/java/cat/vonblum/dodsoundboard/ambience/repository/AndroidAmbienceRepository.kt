@@ -3,7 +3,6 @@ package cat.vonblum.dodsoundboard.ambience.repository
 import android.content.res.AssetManager
 import cat.vonblum.dodsoundboard.ambience.model.Ambience
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceRepository
-import java.util.ArrayList
 
 class AndroidAmbienceRepository(
     private val assetManager: AssetManager,
