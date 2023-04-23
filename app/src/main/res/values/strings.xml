@@ -1,4 +1,7 @@
-<resources>
+<resources> <!-- In alphabetical order -->
+    <string name="ambience_asset_folder">ambiences</string>
     <string name="app_name">DoD Soundboard</string>
     <string name="button">Backup</string>
+    <string name="file_extension_delimiter">.</string>
+    <string name="sound_file_extension">wav</string>
 </resources>

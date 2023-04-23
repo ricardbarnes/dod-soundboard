@@ -1,19 +1,16 @@
 package cat.vonblum.dodsoundboard.ambience.repository
 
-import android.content.res.AssetManager
+import android.content.Context
 import cat.vonblum.dodsoundboard.ambience.model.Ambience
 import cat.vonblum.dodsoundboard.ambience.model.AmbienceName
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceRepository
-import com.vonblum.dodsoundboard.shared.infrastructure.android.AndroidConfig
+import com.vonblum.dodsoundboard.R
 
-class AndroidAmbienceRepository(
-    private val assetManager: AssetManager,
-    private val assetFolder: String,
-) : AmbienceRepository {
+class AndroidAmbienceRepository(private val context: Context) : AmbienceRepository {
 
     override fun findAll(): List<Ambience> {
-        return assetManager.list(assetFolder)
-            ?.map { it.substringBeforeLast(AndroidConfig.FILE_EXTENSION_DELIMITER) }
+        return context.assets.list(context.resources.getString(R.string.ambience_asset_folder))
+            ?.map { it.substringBeforeLast(context.resources.getString(R.string.file_extension_delimiter)) }
             ?.map { AmbienceName(it) }
             ?.map { Ambience(it) } ?: ArrayList()
     }
