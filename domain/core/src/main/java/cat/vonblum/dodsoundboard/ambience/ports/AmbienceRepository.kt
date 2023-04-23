@@ -4,6 +4,6 @@ import cat.vonblum.dodsoundboard.ambience.model.Ambience
 
 interface AmbienceRepository {
 
-    fun findAll(): List<Ambience>
+    fun findAll(limit: Int): List<Ambience>
 
 }

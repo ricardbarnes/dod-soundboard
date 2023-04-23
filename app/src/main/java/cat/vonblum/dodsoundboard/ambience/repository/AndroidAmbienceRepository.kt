@@ -8,7 +8,7 @@ import com.vonblum.dodsoundboard.R
 
 class AndroidAmbienceRepository(private val context: Context) : AmbienceRepository {
 
-    override fun findAll(): List<Ambience> {
+    override fun findAll(limit: Int): List<Ambience> {
         return context.assets.list(context.resources.getString(R.string.ambience_asset_folder))
             ?.map { it.substringBeforeLast(context.resources.getString(R.string.file_extension_delimiter)) }
             ?.map { AmbienceName(it) }

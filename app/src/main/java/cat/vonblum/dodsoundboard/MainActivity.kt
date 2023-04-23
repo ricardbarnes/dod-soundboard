@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.vonblum.dodsoundboard.ambience.application.find.AmbiencesFinder
-import cat.vonblum.dodsoundboard.ambience.application.find.AmbiencesFinderQueryHandler
-import cat.vonblum.dodsoundboard.ambience.application.find.FindAmbiencesQuery
+import cat.vonblum.dodsoundboard.ambience.application.find.AllAmbiencesFinder
+import cat.vonblum.dodsoundboard.ambience.application.find.AllAmbiencesFinderQueryHandler
+import cat.vonblum.dodsoundboard.ambience.application.find.FindAllAmbiencesQuery
 import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayer
 import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayerCommandHandler
 import cat.vonblum.dodsoundboard.ambience.provider.AndroidAmbienceProvider
@@ -21,10 +21,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val ambienceRepository = AndroidAmbienceRepository(applicationContext)
-        val ambiencesFinder = AmbiencesFinder(ambienceRepository)
-        val ambiencesFinderQueryHandler = AmbiencesFinderQueryHandler(ambiencesFinder)
-        val ambiencesFinderResponse =
-            ambiencesFinderQueryHandler.handleSynchronously(FindAmbiencesQuery())
+        val allAmbiencesFinder = AllAmbiencesFinder(ambienceRepository)
+        val allAmbiencesFinderQueryHandler = AllAmbiencesFinderQueryHandler(allAmbiencesFinder)
+        val ambiencesFinderResponse = allAmbiencesFinderQueryHandler.handleSynchronously(
+            FindAllAmbiencesQuery(R.string.ambience_asset_limit)
+        )
         val ambienceNamesList = ambiencesFinderResponse.nameList.map { it }
         val ambienceProvider = AndroidAmbienceProvider(applicationContext)
         val ambiencePlayer = AmbiencePlayer(ambienceProvider)

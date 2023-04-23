@@ -1,5 +1,6 @@
 <resources> <!-- In alphabetical order -->
     <string name="ambience_asset_folder">ambiences</string>
+    <string name="ambience_asset_limit">10000</string>
     <string name="app_name">DoD Soundboard</string>
     <string name="button">Backup</string>
     <string name="sound_file_extension">wav</string>
