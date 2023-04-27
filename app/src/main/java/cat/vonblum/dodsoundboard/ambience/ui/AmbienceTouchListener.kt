@@ -12,7 +12,7 @@ class AmbienceTouchListener(
 
     override fun onClick(p0: View?) {
         val ambiencePlayerCommand = AmbiencePlayerCommand(ambienceName)
-        ambiencePlayerCommandHandler.handleSynchronously(ambiencePlayerCommand)
+        ambiencePlayerCommandHandler.handle(ambiencePlayerCommand)
     }
 
 }
