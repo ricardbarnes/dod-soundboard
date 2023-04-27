@@ -18,19 +18,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val ambienceRepository = AndroidAmbienceRepository(applicationContext)
-        val findAmbiencesQueryHandler = FindAmbiencesQueryHandler(ambienceRepository)
+        val androidAmbienceRepository = AndroidAmbienceRepository(applicationContext)
+        val findAmbiencesQueryHandler = FindAmbiencesQueryHandler(androidAmbienceRepository)
         val ambiencesFinderResponse = findAmbiencesQueryHandler.handle(
             FindAmbiencesQuery(R.string.ambience_asset_limit)
         )
         val ambienceNamesList = ambiencesFinderResponse.nameList.map { it }
-        val ambienceProvider = AndroidAmbienceProvider(applicationContext)
-        val ambiencePlayer = AmbiencePlayerCommandHandler(ambienceProvider)
+        val androidAmbienceProvider = AndroidAmbienceProvider(applicationContext)
+        val ambiencePlayerCommandHandler = AmbiencePlayerCommandHandler(androidAmbienceProvider)
         val recyclerView = findViewById<RecyclerView>(R.id.ambiences)
         val ambiencesAdapter =
-            AmbienceAdapter(ambienceNamesList, AmbiencePlayerCommandHandler(ambienceProvider))
+            AmbienceAdapter(ambienceNamesList, AmbiencePlayerCommandHandler(androidAmbienceProvider))
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = ambiencesAdapter
     }
+
 }
