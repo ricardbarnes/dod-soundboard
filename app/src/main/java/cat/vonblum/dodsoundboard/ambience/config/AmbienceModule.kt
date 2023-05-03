@@ -1,6 +1,8 @@
 package cat.vonblum.dodsoundboard.ambience.config
 
 import android.content.Context
+import cat.vonblum.dodsoundboard.ambience.application.find.FindAmbiencesQueryHandler
+import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayerCommandHandler
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceRepository
 import cat.vonblum.dodsoundboard.ambience.provider.AndroidAmbienceProvider
@@ -26,6 +28,18 @@ class AmbienceModule {
     @Provides
     fun provideAmbienceProvider(@ApplicationContext context: Context): AmbienceProvider {
         return AndroidAmbienceProvider(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFindAmbiencesQueryHandler(ambienceRepository: AmbienceRepository): FindAmbiencesQueryHandler {
+        return FindAmbiencesQueryHandler(ambienceRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAmbiencePlayerCommandHandler(ambienceProvider: AmbienceProvider): AmbiencePlayerCommandHandler {
+        return AmbiencePlayerCommandHandler(ambienceProvider)
     }
 
 }

@@ -23,22 +23,20 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var ambienceProvider: AmbienceProvider
 
+    @Inject
+    lateinit var ambiencePlayerCommandHandler: AmbiencePlayerCommandHandler
+
+    @Inject
+    lateinit var findAmbiencesQueryHandler: FindAmbiencesQueryHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val findAmbiencesQueryHandler = FindAmbiencesQueryHandler(ambienceRepository)
-        val ambiencesFinderResponse = findAmbiencesQueryHandler.handle(
-            FindAmbiencesQuery(R.string.ambience_asset_limit)
-        )
+        val ambiencesFinderResponse = findAmbiencesQueryHandler.handle(FindAmbiencesQuery(R.string.ambience_asset_limit))
         val ambienceNamesList = ambiencesFinderResponse.nameList.map { it }
-        val ambiencePlayerCommandHandler = AmbiencePlayerCommandHandler(ambienceProvider)
         val recyclerView = findViewById<RecyclerView>(R.id.ambiences)
-        val ambiencesAdapter =
-            AmbienceAdapter(
-                ambienceNamesList,
-                AmbiencePlayerCommandHandler(ambienceProvider)
-            )
+        val ambiencesAdapter = AmbienceAdapter(ambienceNamesList, ambiencePlayerCommandHandler)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = ambiencesAdapter
