@@ -5,8 +5,11 @@ import android.media.MediaPlayer
 import cat.vonblum.dodsoundboard.ambience.model.Ambience
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider
 import com.vonblum.dodsoundboard.R
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AndroidAmbienceProvider(private val context: Context) : AmbienceProvider {
+@Singleton
+class AndroidAmbienceProvider @Inject constructor(private val context: Context) : AmbienceProvider {
 
     override fun send(ambience: Ambience) {
         val assetPath =
