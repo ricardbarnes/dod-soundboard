@@ -1,13 +1,15 @@
 package cat.vonblum.dodsoundboard.ambience.application.find
 
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceRepository
+import cat.vonblum.dodsoundboard.shared.domain.bus.query.QueryHandler
 
-class FindAmbiencesQueryHandler(private val ambienceRepository: AmbienceRepository) {
+class FindAmbiencesQueryHandler(private val ambienceRepository: AmbienceRepository): QueryHandler {
 
-    fun handle(findAmbiencesQuery: FindAmbiencesQuery): FindAmbiencesResponse =
+    fun handle(findAmbiencesQuery: FindAmbiencesQuery): FindAmbiencesResponse? =
         ambienceRepository
             .findAll(findAmbiencesQuery.limit)
-            .map { ambience -> ambience.name.value }
-            .let(::FindAmbiencesResponse)
+            .takeIf { it.isNotEmpty() }
+            ?.map { ambience -> ambience.name.value }
+            ?.let(::FindAmbiencesResponse)
 
 }
