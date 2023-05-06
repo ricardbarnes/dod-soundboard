@@ -3,12 +3,12 @@ package cat.vonblum.dodsoundboard.ambience.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayerCommandHandler
+import cat.vonblum.dodsoundboard.ambience.application.play.PlayAmbienceCommandHandler
 import com.vonblum.dodsoundboard.R
 
 class AmbienceAdapter(
     private val ambienceNameList: List<String>,
-    private val ambiencePlayerCommandHandler: AmbiencePlayerCommandHandler
+    private val playAmbienceCommandHandler: PlayAmbienceCommandHandler
 ) :
     RecyclerView.Adapter<AmbienceViewHolder>() {
 
@@ -25,7 +25,7 @@ class AmbienceAdapter(
         holder.itemView.setOnClickListener(
             AmbienceTouchListener(
                 ambienceName,
-                ambiencePlayerCommandHandler
+                playAmbienceCommandHandler
             )
         )
     }

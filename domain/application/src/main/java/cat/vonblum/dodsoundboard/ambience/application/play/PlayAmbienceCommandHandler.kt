@@ -5,13 +5,13 @@ import cat.vonblum.dodsoundboard.ambience.model.AmbienceName
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider
 import cat.vonblum.dodsoundboard.shared.domain.bus.command.CommandHandler
 
-class AmbiencePlayerCommandHandler(private val ambienceProvider: AmbienceProvider) :
+class PlayAmbienceCommandHandler(private val ambienceProvider: AmbienceProvider) :
     CommandHandler {
 
-    fun handle(ambiencePlayerCommand: AmbiencePlayerCommand) =
+    fun handle(playAmbienceCommand: PlayAmbienceCommand) =
         ambienceProvider.send(
             Ambience(
-                AmbienceName(ambiencePlayerCommand.ambienceName)
+                AmbienceName(playAmbienceCommand.ambienceName)
             )
         )
 

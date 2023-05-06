@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.vonblum.dodsoundboard.ambience.application.find.FindAmbiencesQuery
 import cat.vonblum.dodsoundboard.ambience.application.find.FindAmbiencesQueryHandler
-import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayerCommandHandler
-import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider
-import cat.vonblum.dodsoundboard.ambience.ports.AmbienceRepository
+import cat.vonblum.dodsoundboard.ambience.application.play.PlayAmbienceCommandHandler
 import cat.vonblum.dodsoundboard.ambience.ui.AmbienceAdapter
 import com.vonblum.dodsoundboard.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,13 +16,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var ambienceRepository: AmbienceRepository
-
-    @Inject
-    lateinit var ambienceProvider: AmbienceProvider
-
-    @Inject
-    lateinit var ambiencePlayerCommandHandler: AmbiencePlayerCommandHandler
+    lateinit var playAmbienceCommandHandler: PlayAmbienceCommandHandler
 
     @Inject
     lateinit var findAmbiencesQueryHandler: FindAmbiencesQueryHandler
@@ -33,10 +25,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val ambiencesFinderResponse = findAmbiencesQueryHandler.handle(FindAmbiencesQuery(R.string.ambience_asset_limit))
-        val ambienceNamesList = ambiencesFinderResponse.nameList.map { it }
+        val ambiencesFinderResponse =
+            findAmbiencesQueryHandler.handle(FindAmbiencesQuery(R.string.ambience_asset_limit))
+        val ambienceNamesList = ambiencesFinderResponse?.nameList?.map { it }
         val recyclerView = findViewById<RecyclerView>(R.id.ambiences)
-        val ambiencesAdapter = AmbienceAdapter(ambienceNamesList, ambiencePlayerCommandHandler)
+        val ambiencesAdapter =
+            ambienceNamesList?.let { AmbienceAdapter(it, playAmbienceCommandHandler) }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = ambiencesAdapter

@@ -38,6 +38,7 @@ dependencies {
     implementation project(":shared:domain")
     implementation project(":domain:core")
     implementation project(":domain:application")
+    implementation project(":shared:domain")
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'

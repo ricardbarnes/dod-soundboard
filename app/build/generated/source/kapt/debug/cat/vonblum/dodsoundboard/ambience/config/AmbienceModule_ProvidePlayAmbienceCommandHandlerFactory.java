@@ -1,6 +1,6 @@
 package cat.vonblum.dodsoundboard.ambience.config;
 
-import cat.vonblum.dodsoundboard.ambience.application.play.AmbiencePlayerCommandHandler;
+import cat.vonblum.dodsoundboard.ambience.application.play.PlayAmbienceCommandHandler;
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
@@ -21,29 +21,29 @@ import javax.inject.Provider;
     "unchecked",
     "rawtypes"
 })
-public final class AmbienceModule_ProvideAmbiencePlayerCommandHandlerFactory implements Factory<AmbiencePlayerCommandHandler> {
+public final class AmbienceModule_ProvidePlayAmbienceCommandHandlerFactory implements Factory<PlayAmbienceCommandHandler> {
   private final AmbienceModule module;
 
   private final Provider<AmbienceProvider> ambienceProvider;
 
-  public AmbienceModule_ProvideAmbiencePlayerCommandHandlerFactory(AmbienceModule module,
+  public AmbienceModule_ProvidePlayAmbienceCommandHandlerFactory(AmbienceModule module,
       Provider<AmbienceProvider> ambienceProvider) {
     this.module = module;
     this.ambienceProvider = ambienceProvider;
   }
 
   @Override
-  public AmbiencePlayerCommandHandler get() {
-    return provideAmbiencePlayerCommandHandler(module, ambienceProvider.get());
+  public PlayAmbienceCommandHandler get() {
+    return providePlayAmbienceCommandHandler(module, ambienceProvider.get());
   }
 
-  public static AmbienceModule_ProvideAmbiencePlayerCommandHandlerFactory create(
+  public static AmbienceModule_ProvidePlayAmbienceCommandHandlerFactory create(
       AmbienceModule module, Provider<AmbienceProvider> ambienceProvider) {
-    return new AmbienceModule_ProvideAmbiencePlayerCommandHandlerFactory(module, ambienceProvider);
+    return new AmbienceModule_ProvidePlayAmbienceCommandHandlerFactory(module, ambienceProvider);
   }
 
-  public static AmbiencePlayerCommandHandler provideAmbiencePlayerCommandHandler(
+  public static PlayAmbienceCommandHandler providePlayAmbienceCommandHandler(
       AmbienceModule instance, AmbienceProvider ambienceProvider) {
-    return Preconditions.checkNotNullFromProvides(instance.provideAmbiencePlayerCommandHandler(ambienceProvider));
+    return Preconditions.checkNotNullFromProvides(instance.providePlayAmbienceCommandHandler(ambienceProvider));
   }
 }
