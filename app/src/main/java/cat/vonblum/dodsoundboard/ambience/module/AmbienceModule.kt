@@ -5,8 +5,8 @@ import cat.vonblum.dodsoundboard.ambience.application.find.FindAmbiencesQueryHan
 import cat.vonblum.dodsoundboard.ambience.application.play.PlayAmbienceCommandHandler
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceRepository
-import cat.vonblum.dodsoundboard.ambience.provider.AndroidAmbienceProvider
-import cat.vonblum.dodsoundboard.ambience.repository.AndroidAmbienceRepository
+import cat.vonblum.dodsoundboard.ambience.provider.AmbienceProviderImpl
+import cat.vonblum.dodsoundboard.ambience.repository.AmbienceRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,16 +20,6 @@ class AmbienceModule {
 
     @Singleton
     @Provides
-    fun provideAmbienceRepository(@ApplicationContext context: Context): AmbienceRepository =
-        AndroidAmbienceRepository(context)
-
-    @Singleton
-    @Provides
-    fun provideAmbienceProvider(@ApplicationContext context: Context): AmbienceProvider =
-        AndroidAmbienceProvider(context)
-
-    @Singleton
-    @Provides
     fun provideFindAmbiencesQueryHandler(ambienceRepository: AmbienceRepository): FindAmbiencesQueryHandler =
         FindAmbiencesQueryHandler(ambienceRepository)
 
@@ -37,5 +27,15 @@ class AmbienceModule {
     @Provides
     fun providePlayAmbienceCommandHandler(ambienceProvider: AmbienceProvider): PlayAmbienceCommandHandler =
         PlayAmbienceCommandHandler(ambienceProvider)
+
+    @Singleton
+    @Provides
+    fun provideAmbienceRepository(@ApplicationContext context: Context): AmbienceRepository =
+        AmbienceRepositoryImpl(context)
+
+    @Singleton
+    @Provides
+    fun provideAmbienceProvider(@ApplicationContext context: Context): AmbienceProvider =
+        AmbienceProviderImpl(context)
 
 }

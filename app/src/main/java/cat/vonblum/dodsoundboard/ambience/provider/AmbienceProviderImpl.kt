@@ -6,7 +6,7 @@ import cat.vonblum.dodsoundboard.ambience.model.Ambience
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider
 import com.vonblum.dodsoundboard.R
 
-class AndroidAmbienceProvider(private val context: Context) :
+class AmbienceProviderImpl(private val context: Context) :
     AmbienceProvider {
 
     override fun send(ambience: Ambience) {

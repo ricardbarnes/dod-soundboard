@@ -6,7 +6,7 @@ import cat.vonblum.dodsoundboard.ambience.model.AmbienceName
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceRepository
 import com.vonblum.dodsoundboard.R
 
-class AndroidAmbienceRepository(private val context: Context) : AmbienceRepository {
+class AmbienceRepositoryImpl(private val context: Context) : AmbienceRepository {
 
     override fun findAll(limit: Int): List<Ambience> =
         context.assets.list(context.resources.getString(R.string.ambience_asset_folder))
