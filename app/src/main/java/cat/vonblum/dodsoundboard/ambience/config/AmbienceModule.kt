@@ -1,6 +1,7 @@
 package cat.vonblum.dodsoundboard.ambience.config
 
 import android.content.Context
+import android.media.MediaPlayer
 import cat.vonblum.dodsoundboard.ambience.application.find.FindAmbiencesQueryHandler
 import cat.vonblum.dodsoundboard.ambience.application.play.PlayAmbienceCommandHandler
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider
@@ -20,26 +21,29 @@ class AmbienceModule {
 
     @Singleton
     @Provides
-    fun provideAmbienceRepository(@ApplicationContext context: Context): AmbienceRepository {
-        return AndroidAmbienceRepository(context)
-    }
+    fun provideMediaPlayer(): MediaPlayer = MediaPlayer()
 
     @Singleton
     @Provides
-    fun provideAmbienceProvider(@ApplicationContext context: Context): AmbienceProvider {
-        return AndroidAmbienceProvider(context)
-    }
+    fun provideAmbienceRepository(@ApplicationContext context: Context): AmbienceRepository =
+        AndroidAmbienceRepository(context)
 
     @Singleton
     @Provides
-    fun provideFindAmbiencesQueryHandler(ambienceRepository: AmbienceRepository): FindAmbiencesQueryHandler {
-        return FindAmbiencesQueryHandler(ambienceRepository)
-    }
+    fun provideAmbienceProvider(
+        @ApplicationContext context: Context,
+        mediaPlayer: MediaPlayer,
+    ): AmbienceProvider =
+        AndroidAmbienceProvider(context, mediaPlayer)
 
     @Singleton
     @Provides
-    fun providePlayAmbienceCommandHandler(ambienceProvider: AmbienceProvider): PlayAmbienceCommandHandler {
-        return PlayAmbienceCommandHandler(ambienceProvider)
-    }
+    fun provideFindAmbiencesQueryHandler(ambienceRepository: AmbienceRepository): FindAmbiencesQueryHandler =
+        FindAmbiencesQueryHandler(ambienceRepository)
+
+    @Singleton
+    @Provides
+    fun providePlayAmbienceCommandHandler(ambienceProvider: AmbienceProvider): PlayAmbienceCommandHandler =
+        PlayAmbienceCommandHandler(ambienceProvider)
 
 }
