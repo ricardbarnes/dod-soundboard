@@ -1,4 +1,4 @@
-package cat.vonblum.dodsoundboard.ambience.config;
+package cat.vonblum.dodsoundboard.ambience.module;
 
 import android.media.MediaPlayer;
 import dagger.internal.DaggerGenerated;

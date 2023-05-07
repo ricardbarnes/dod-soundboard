@@ -1,4 +1,4 @@
-package cat.vonblum.dodsoundboard.ambience.config;
+package cat.vonblum.dodsoundboard.ambience.module;
 
 import cat.vonblum.dodsoundboard.ambience.application.play.PlayAmbienceCommandHandler;
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider;
