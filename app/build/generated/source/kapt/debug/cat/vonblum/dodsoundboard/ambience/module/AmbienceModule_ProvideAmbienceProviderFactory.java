@@ -1,7 +1,6 @@
 package cat.vonblum.dodsoundboard.ambience.module;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
@@ -27,27 +26,23 @@ public final class AmbienceModule_ProvideAmbienceProviderFactory implements Fact
 
   private final Provider<Context> contextProvider;
 
-  private final Provider<MediaPlayer> mediaPlayerProvider;
-
   public AmbienceModule_ProvideAmbienceProviderFactory(AmbienceModule module,
-      Provider<Context> contextProvider, Provider<MediaPlayer> mediaPlayerProvider) {
+      Provider<Context> contextProvider) {
     this.module = module;
     this.contextProvider = contextProvider;
-    this.mediaPlayerProvider = mediaPlayerProvider;
   }
 
   @Override
   public AmbienceProvider get() {
-    return provideAmbienceProvider(module, contextProvider.get(), mediaPlayerProvider.get());
+    return provideAmbienceProvider(module, contextProvider.get());
   }
 
   public static AmbienceModule_ProvideAmbienceProviderFactory create(AmbienceModule module,
-      Provider<Context> contextProvider, Provider<MediaPlayer> mediaPlayerProvider) {
-    return new AmbienceModule_ProvideAmbienceProviderFactory(module, contextProvider, mediaPlayerProvider);
+      Provider<Context> contextProvider) {
+    return new AmbienceModule_ProvideAmbienceProviderFactory(module, contextProvider);
   }
 
-  public static AmbienceProvider provideAmbienceProvider(AmbienceModule instance, Context context,
-      MediaPlayer mediaPlayer) {
-    return Preconditions.checkNotNullFromProvides(instance.provideAmbienceProvider(context, mediaPlayer));
+  public static AmbienceProvider provideAmbienceProvider(AmbienceModule instance, Context context) {
+    return Preconditions.checkNotNullFromProvides(instance.provideAmbienceProvider(context));
   }
 }

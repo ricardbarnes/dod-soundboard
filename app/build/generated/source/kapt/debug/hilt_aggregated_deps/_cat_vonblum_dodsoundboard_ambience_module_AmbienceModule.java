@@ -8,8 +8,8 @@ import javax.annotation.processing.Generated;
  */
 @AggregatedDeps(
     components = "dagger.hilt.components.SingletonComponent",
-    modules = "cat.vonblum.dodsoundboard.ambience.config.AmbienceModule"
+    modules = "cat.vonblum.dodsoundboard.ambience.module.AmbienceModule"
 )
 @Generated("dagger.hilt.processor.internal.aggregateddeps.AggregatedDepsGenerator")
-public class _cat_vonblum_dodsoundboard_ambience_config_AmbienceModule {
+public class _cat_vonblum_dodsoundboard_ambience_module_AmbienceModule {
 }

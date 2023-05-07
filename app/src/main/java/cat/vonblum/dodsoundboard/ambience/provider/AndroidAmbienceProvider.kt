@@ -6,10 +6,12 @@ import cat.vonblum.dodsoundboard.ambience.model.Ambience
 import cat.vonblum.dodsoundboard.ambience.ports.AmbienceProvider
 import com.vonblum.dodsoundboard.R
 
-class AndroidAmbienceProvider(private val context: Context, private val mediaPlayer: MediaPlayer) :
+class AndroidAmbienceProvider(private val context: Context) :
     AmbienceProvider {
 
     override fun send(ambience: Ambience) {
+        val mediaPlayer = MediaPlayer()
+
         val assetPath =
             "${context.resources.getString(R.string.ambience_asset_folder)}${
                 context.resources.getString(
@@ -28,5 +30,4 @@ class AndroidAmbienceProvider(private val context: Context, private val mediaPla
         mediaPlayer.prepare()
         mediaPlayer.start()
     }
-
 }
