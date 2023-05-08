@@ -1,7 +1,7 @@
 package cat.vonblum.dodsoundboard;
 
-import cat.vonblum.dodsoundboard.ambience.application.find.FindAmbiencesQueryHandler;
-import cat.vonblum.dodsoundboard.ambience.application.play.PlayAmbienceCommandHandler;
+import cat.vonblum.dodsoundboard.shared.domain.bus.command.CommandBus;
+import cat.vonblum.dodsoundboard.shared.domain.bus.query.QueryBus;
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.InjectedFieldSignature;
@@ -20,38 +20,34 @@ import javax.inject.Provider;
     "rawtypes"
 })
 public final class MainActivity_MembersInjector implements MembersInjector<MainActivity> {
-  private final Provider<PlayAmbienceCommandHandler> playAmbienceCommandHandlerProvider;
+  private final Provider<CommandBus> commandBusProvider;
 
-  private final Provider<FindAmbiencesQueryHandler> findAmbiencesQueryHandlerProvider;
+  private final Provider<QueryBus> queryBusProvider;
 
-  public MainActivity_MembersInjector(
-      Provider<PlayAmbienceCommandHandler> playAmbienceCommandHandlerProvider,
-      Provider<FindAmbiencesQueryHandler> findAmbiencesQueryHandlerProvider) {
-    this.playAmbienceCommandHandlerProvider = playAmbienceCommandHandlerProvider;
-    this.findAmbiencesQueryHandlerProvider = findAmbiencesQueryHandlerProvider;
+  public MainActivity_MembersInjector(Provider<CommandBus> commandBusProvider,
+      Provider<QueryBus> queryBusProvider) {
+    this.commandBusProvider = commandBusProvider;
+    this.queryBusProvider = queryBusProvider;
   }
 
-  public static MembersInjector<MainActivity> create(
-      Provider<PlayAmbienceCommandHandler> playAmbienceCommandHandlerProvider,
-      Provider<FindAmbiencesQueryHandler> findAmbiencesQueryHandlerProvider) {
-    return new MainActivity_MembersInjector(playAmbienceCommandHandlerProvider, findAmbiencesQueryHandlerProvider);
+  public static MembersInjector<MainActivity> create(Provider<CommandBus> commandBusProvider,
+      Provider<QueryBus> queryBusProvider) {
+    return new MainActivity_MembersInjector(commandBusProvider, queryBusProvider);
   }
 
   @Override
   public void injectMembers(MainActivity instance) {
-    injectPlayAmbienceCommandHandler(instance, playAmbienceCommandHandlerProvider.get());
-    injectFindAmbiencesQueryHandler(instance, findAmbiencesQueryHandlerProvider.get());
+    injectCommandBus(instance, commandBusProvider.get());
+    injectQueryBus(instance, queryBusProvider.get());
   }
 
-  @InjectedFieldSignature("cat.vonblum.dodsoundboard.MainActivity.playAmbienceCommandHandler")
-  public static void injectPlayAmbienceCommandHandler(MainActivity instance,
-      PlayAmbienceCommandHandler playAmbienceCommandHandler) {
-    instance.playAmbienceCommandHandler = playAmbienceCommandHandler;
+  @InjectedFieldSignature("cat.vonblum.dodsoundboard.MainActivity.commandBus")
+  public static void injectCommandBus(MainActivity instance, CommandBus commandBus) {
+    instance.commandBus = commandBus;
   }
 
-  @InjectedFieldSignature("cat.vonblum.dodsoundboard.MainActivity.findAmbiencesQueryHandler")
-  public static void injectFindAmbiencesQueryHandler(MainActivity instance,
-      FindAmbiencesQueryHandler findAmbiencesQueryHandler) {
-    instance.findAmbiencesQueryHandler = findAmbiencesQueryHandler;
+  @InjectedFieldSignature("cat.vonblum.dodsoundboard.MainActivity.queryBus")
+  public static void injectQueryBus(MainActivity instance, QueryBus queryBus) {
+    instance.queryBus = queryBus;
   }
 }

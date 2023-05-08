@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.vonblum.dodsoundboard.ambience.application.find.FindAmbiencesQuery
-import cat.vonblum.dodsoundboard.ambience.application.find.FindAmbiencesQueryHandler
-import cat.vonblum.dodsoundboard.ambience.application.play.PlayAmbienceCommandHandler
+import cat.vonblum.dodsoundboard.ambience.application.find.FindAmbiencesResponse
 import cat.vonblum.dodsoundboard.ambience.ui.AmbienceAdapter
+import cat.vonblum.dodsoundboard.shared.domain.bus.command.CommandBus
+import cat.vonblum.dodsoundboard.shared.domain.bus.query.QueryBus
 import com.vonblum.dodsoundboard.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -16,21 +17,21 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var playAmbienceCommandHandler: PlayAmbienceCommandHandler
+    lateinit var commandBus: CommandBus
 
     @Inject
-    lateinit var findAmbiencesQueryHandler: FindAmbiencesQueryHandler
+    lateinit var queryBus: QueryBus
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val ambiencesFinderResponse =
-            findAmbiencesQueryHandler.handle(FindAmbiencesQuery(R.string.ambience_asset_limit))
-        val ambienceNamesList = ambiencesFinderResponse?.nameList?.map { it }
+            queryBus.ask(FindAmbiencesQuery(R.string.ambience_asset_limit)) as FindAmbiencesResponse
+        val ambienceNamesList = ambiencesFinderResponse.nameList.map { it }
         val recyclerView = findViewById<RecyclerView>(R.id.ambiences)
         val ambiencesAdapter =
-            ambienceNamesList?.let { AmbienceAdapter(it, playAmbienceCommandHandler) }
+            AmbienceAdapter(ambienceNamesList, commandBus)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = ambiencesAdapter
