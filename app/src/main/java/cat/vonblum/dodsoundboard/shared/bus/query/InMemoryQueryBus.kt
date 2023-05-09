@@ -4,8 +4,8 @@ import cat.vonblum.dodsoundboard.shared.domain.bus.query.Query
 import cat.vonblum.dodsoundboard.shared.domain.bus.query.QueryBus
 import cat.vonblum.dodsoundboard.shared.domain.bus.query.QueryHandler
 import cat.vonblum.dodsoundboard.shared.domain.bus.query.Response
-import cat.vonblum.shared.infrastructure.bus.MessageBus
-import cat.vonblum.shared.infrastructure.bus.UnregisteredHandlerException
+import cat.vonblum.shared.infrastructure.bus.message.MessageBus
+import cat.vonblum.shared.infrastructure.bus.exceptions.UnregisteredHandlerException
 
 class InMemoryQueryBus(queryHandlers: List<QueryHandler>) : QueryBus {
 

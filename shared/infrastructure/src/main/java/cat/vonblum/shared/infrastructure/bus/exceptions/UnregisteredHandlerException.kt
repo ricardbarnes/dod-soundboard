@@ -1,4 +1,4 @@
-package cat.vonblum.shared.infrastructure.bus
+package cat.vonblum.shared.infrastructure.bus.exceptions
 
 class UnregisteredHandlerException private constructor(override val message: String) :
     RuntimeException(message) {
