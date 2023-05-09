@@ -4,25 +4,23 @@ import cat.vonblum.dodsoundboard.shared.domain.bus.query.Query
 import cat.vonblum.dodsoundboard.shared.domain.bus.query.QueryBus
 import cat.vonblum.dodsoundboard.shared.domain.bus.query.QueryHandler
 import cat.vonblum.dodsoundboard.shared.domain.bus.query.Response
+import cat.vonblum.shared.infrastructure.bus.MessageBus
+import cat.vonblum.shared.infrastructure.bus.UnregisteredHandlerException
 
 class InMemoryQueryBus(queryHandlers: List<QueryHandler>) : QueryBus {
 
-    private val queryHandlerMap: Map<String, QueryHandler> =
-        queryHandlers.associateBy { queryHandler ->
-            queryHandler::class.simpleName?.removeSuffix("Handler")
-                ?: throw RuntimeException("Query handler has no simple name")
-        }
+    private val messageBus = MessageBus(queryHandlers)
 
     override fun ask(query: Query): Response? {
-        val queryName = query.javaClass.simpleName
+        val response: Any?
 
-        if (!queryHandlerMap.containsKey(queryName)) {
-            throw QueryNotRegisteredException.becauseOf(query)
+        try {
+            response = messageBus.dispatch(query)
+        } catch (unregisteredHandlerException: UnregisteredHandlerException) {
+            throw UnregisteredQueryException.becauseOf(query)
         }
 
-        val queryHandler = queryHandlerMap[queryName]
-        val handleMethod = queryHandler?.javaClass?.getDeclaredMethod("handle", query.javaClass)
-        return handleMethod?.invoke(queryHandler, query) as Response?
+        return response as Response?
     }
 
 }

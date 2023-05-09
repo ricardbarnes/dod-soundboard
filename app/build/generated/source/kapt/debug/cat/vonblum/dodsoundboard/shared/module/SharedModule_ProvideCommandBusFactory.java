@@ -19,7 +19,9 @@ import javax.inject.Provider;
 )
 @SuppressWarnings({
     "unchecked",
-    "rawtypes"
+    "rawtypes",
+    "KotlinInternal",
+    "KotlinInternalInJava"
 })
 public final class SharedModule_ProvideCommandBusFactory implements Factory<CommandBus> {
   private final SharedModule module;

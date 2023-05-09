@@ -19,7 +19,9 @@ import javax.inject.Provider;
 )
 @SuppressWarnings({
     "unchecked",
-    "rawtypes"
+    "rawtypes",
+    "KotlinInternal",
+    "KotlinInternalInJava"
 })
 public final class AmbienceModule_ProvidePlayAmbienceCommandHandlerFactory implements Factory<PlayAmbienceCommandHandler> {
   private final AmbienceModule module;
