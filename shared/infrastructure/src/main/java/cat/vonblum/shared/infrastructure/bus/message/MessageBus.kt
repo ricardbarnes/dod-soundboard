@@ -1,52 +1,56 @@
 package cat.vonblum.shared.infrastructure.bus.message
 
+import cat.vonblum.shared.infrastructure.bus.exceptions.BadHandlerSuffixException
 import cat.vonblum.shared.infrastructure.bus.exceptions.BadSuffixException
 import cat.vonblum.shared.infrastructure.bus.exceptions.HandlerMethodNotFoundException
 import cat.vonblum.shared.infrastructure.bus.exceptions.UnnamedClassException
 import cat.vonblum.shared.infrastructure.bus.exceptions.UnregisteredHandlerException
-import cat.vonblum.shared.infrastructure.bus.exceptions.WrongHandlerSuffixException
 import cat.vonblum.shared.infrastructure.bus.message.config.HandlerConfig
+import cat.vonblum.shared.infrastructure.bus.message.config.MessageBusConfig
 import cat.vonblum.shared.infrastructure.bus.message.config.MessageConfig
 
 class MessageBus(
     handlers: List<Any>,
-    private val handlerConfig: HandlerConfig = HandlerConfig("Handler", "handle"),
-    private val messageConfig: MessageConfig = MessageConfig("Command", "Query"),
+    private val messageBusConfig: MessageBusConfig = MessageBusConfig(
+        HandlerConfig("Handler", "handle"),
+        MessageConfig("Command", "Query"),
+    ),
+    private val handlerMap: HandlerMap = HandlerMap(handlers, messageBusConfig.handlerConfig),
 ) {
 
-    private val handlerMap: Map<String, Any> =
-        handlers.associateBy { handler ->
-            handler::class.simpleName?.removeSuffix(handlerConfig.handlerSuffix)
-                ?: throw UnnamedClassException()
-        }
-
     @Throws(
+        BadHandlerSuffixException::class,
+        BadSuffixException::class,
+        HandlerMethodNotFoundException::class,
+        UnnamedClassException::class,
         UnregisteredHandlerException::class,
-        WrongHandlerSuffixException::class,
-        HandlerMethodNotFoundException::class
     )
     fun dispatch(message: Any): Any? {
-        if (!message.javaClass.simpleName.endsWith(this.messageConfig.commandSuffix) &&
-            !message.javaClass.simpleName.endsWith(this.messageConfig.querySuffix)
+        if (!message.javaClass.simpleName.endsWith(messageBusConfig.messageConfig.commandSuffix) &&
+            !message.javaClass.simpleName.endsWith(messageBusConfig.messageConfig.querySuffix)
         ) {
-            throw BadSuffixException.becauseOf(message.javaClass.simpleName, this.messageConfig)
+            throw BadSuffixException.becauseOf(
+                message.javaClass.simpleName,
+                messageBusConfig.messageConfig
+            )
         }
 
-        val handler = handlerMap[message.javaClass.simpleName]
+        val handler = handlerMap.value[message.javaClass.simpleName]
             ?: throw UnregisteredHandlerException.becauseOf(message)
 
-        if (!handler.javaClass.simpleName.endsWith(handlerConfig.handlerSuffix)) {
-            throw WrongHandlerSuffixException.becauseOf(
+        if (!handler.javaClass.simpleName.endsWith(messageBusConfig.handlerConfig.handlerSuffix)) {
+            throw BadHandlerSuffixException.becauseOf(
                 handler.javaClass.simpleName,
-                handlerConfig.handlerSuffix
+                messageBusConfig.handlerConfig.handlerSuffix
             )
         }
 
         val handleMethod =
             handler::class.java.getDeclaredMethod(
-                handlerConfig.handlerMethodName,
+                messageBusConfig.handlerConfig.handlerMethodName,
                 message::class.java
-            ) ?: throw HandlerMethodNotFoundException.becauseOf(handlerConfig.handlerMethodName)
+            )
+                ?: throw HandlerMethodNotFoundException.becauseOf(messageBusConfig.handlerConfig.handlerMethodName)
 
         return handleMethod.invoke(handler, message) ?: return null
     }
