@@ -33,10 +33,10 @@ class MessageBus(
             )
         }
 
-        val handler = handlerMap.getHandlerFor(message.javaClass.simpleName)
-        val handleMethod = handlerMap.getHandlerMethodFor(message.javaClass)
-
-        return handleMethod.invoke(handler, message) ?: return null
+        return handlerMap.getHandlerMethodFor(message.javaClass).invoke(
+            handlerMap.getHandlerFor(message.javaClass.simpleName),
+            message
+        ) ?: return null
     }
 
 }
