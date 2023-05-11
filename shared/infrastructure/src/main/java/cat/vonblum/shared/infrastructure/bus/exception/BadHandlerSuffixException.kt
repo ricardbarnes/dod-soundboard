@@ -1,4 +1,4 @@
-package cat.vonblum.shared.infrastructure.bus.exceptions
+package cat.vonblum.shared.infrastructure.bus.exception
 
 class BadHandlerSuffixException private constructor(override val message: String) :
     RuntimeException(message) {
