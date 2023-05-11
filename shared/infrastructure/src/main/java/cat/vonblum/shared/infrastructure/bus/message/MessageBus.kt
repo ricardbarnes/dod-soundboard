@@ -33,8 +33,7 @@ class MessageBus(
             )
         }
 
-        val handler = handlerMap.value[message.javaClass.simpleName]
-            ?: throw UnregisteredHandlerException.becauseOf(message)
+        val handler = handlerMap.getHandlerFor(message.javaClass.simpleName)
 
         val handleMethod =
             handler::class.java.getDeclaredMethod(

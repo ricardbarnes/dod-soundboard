@@ -5,8 +5,8 @@ class UnregisteredHandlerException private constructor(override val message: Str
 
     companion object {
 
-        fun becauseOf(any: Any) =
-            UnregisteredHandlerException("Handler class \"${any.javaClass.simpleName}\" is not registered.")
+        fun becauseOf(className: String) =
+            UnregisteredHandlerException("Handler class \"$className\" is not registered.")
 
     }
 
