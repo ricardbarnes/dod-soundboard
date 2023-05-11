@@ -14,8 +14,8 @@ class MessageBus(
         HandlerConfig("Handler", "handle"),
         MessageConfig("Command", "Query"),
     ),
-    private val messageValidator: MessageValidator = MessageValidator(messageBusConfig.messageConfig),
     private val handlerMap: HandlerMap = HandlerMap(handlers, messageBusConfig.handlerConfig),
+    private val messageDispatcher: MessageDispatcher = MessageDispatcher(handlerMap),
 ) {
 
     @Throws(
@@ -24,15 +24,7 @@ class MessageBus(
         HandlerMethodNotFoundException::class,
         UnregisteredHandlerException::class,
     )
-    fun dispatch(message: Any): Any? {
-        messageValidator.validate(message.javaClass.simpleName)
-        return send(message)
-    }
-
-    private fun send(message: Any): Any? =
-        handlerMap.getHandlerMethodFor(message.javaClass).invoke(
-            handlerMap.getHandlerFor(message.javaClass.simpleName),
-            message
-        ) ?: null
+    fun dispatch(message: Any): Any? =
+        messageDispatcher.dispatch(Message(message, messageBusConfig.messageConfig))
 
 }
