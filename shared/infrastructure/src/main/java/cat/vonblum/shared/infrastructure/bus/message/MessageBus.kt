@@ -14,6 +14,7 @@ class MessageBus(
         HandlerConfig("Handler", "handle"),
         MessageConfig("Command", "Query"),
     ),
+    private val messageValidator: MessageValidator = MessageValidator(messageBusConfig.messageConfig),
     private val handlerMap: HandlerMap = HandlerMap(handlers, messageBusConfig.handlerConfig),
 ) {
 
@@ -24,19 +25,14 @@ class MessageBus(
         UnregisteredHandlerException::class,
     )
     fun dispatch(message: Any): Any? {
-        if (!message.javaClass.simpleName.endsWith(messageBusConfig.messageConfig.commandSuffix) &&
-            !message.javaClass.simpleName.endsWith(messageBusConfig.messageConfig.querySuffix)
-        ) {
-            throw BadSuffixException.becauseOf(
-                message.javaClass.simpleName,
-                messageBusConfig.messageConfig
-            )
-        }
+        messageValidator.validate(message.javaClass.simpleName)
+        return send(message)
+    }
 
-        return handlerMap.getHandlerMethodFor(message.javaClass).invoke(
+    private fun send(message: Any): Any? =
+        handlerMap.getHandlerMethodFor(message.javaClass).invoke(
             handlerMap.getHandlerFor(message.javaClass.simpleName),
             message
-        ) ?: return null
-    }
+        ) ?: null
 
 }
