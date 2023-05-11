@@ -34,13 +34,7 @@ class MessageBus(
         }
 
         val handler = handlerMap.getHandlerFor(message.javaClass.simpleName)
-
-        val handleMethod =
-            handler::class.java.getDeclaredMethod(
-                messageBusConfig.handlerConfig.handlerMethodName,
-                message::class.java
-            )
-                ?: throw HandlerMethodNotFoundException.becauseOf(messageBusConfig.handlerConfig.handlerMethodName)
+        val handleMethod = handlerMap.getHandlerMethodFor(message.javaClass)
 
         return handleMethod.invoke(handler, message) ?: return null
     }
