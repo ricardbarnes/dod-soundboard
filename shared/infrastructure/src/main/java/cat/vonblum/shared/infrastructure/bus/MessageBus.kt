@@ -18,7 +18,6 @@ class MessageBus(
         handlers,
         messageBusConfig.messageHandlerConfig
     ),
-    private val messageDispatcher: MessageDispatcher = MessageDispatcher(messageHandlerMap),
 ) {
 
     @Throws(
@@ -28,6 +27,12 @@ class MessageBus(
         UnregisteredHandlerException::class,
     )
     fun dispatch(message: Any): Any? =
-        messageDispatcher.dispatch(Message(message, messageBusConfig.messageConfig))
+        send(Message(message, messageBusConfig.messageConfig))
+
+    private fun send(message: Message): Any? =
+        messageHandlerMap.getHandlerMethodFor(message.value.javaClass).invoke(
+            messageHandlerMap.getHandlerFor(message.value.javaClass.simpleName),
+            message.value
+        ) ?: null
 
 }
