@@ -8,13 +8,17 @@ import cat.vonblum.shared.infrastructure.bus.exception.BadMessageSuffixException
 import cat.vonblum.shared.infrastructure.bus.exception.HandlerMethodNotFoundException
 import cat.vonblum.shared.infrastructure.bus.exception.UnregisteredHandlerException
 import cat.vonblum.shared.infrastructure.bus.model.Message
+import cat.vonblum.shared.infrastructure.bus.model.MessageHandler
 import cat.vonblum.shared.infrastructure.bus.model.MessageHandlerMap
 
 class MessageBus(
     handlers: List<Any>,
     private val messageBusConfig: MessageBusConfig = MessageBusConfig(
-        MessageHandlerConfig("Handler", "handle"),
-        MessageConfig("Command", "Query"),
+        MessageHandlerConfig(
+            MessageHandler.DEFAULT_HANDLER_SUFFIX,
+            MessageHandler.DEFAULT_HANDLER_METHOD_NAME
+        ),
+        MessageConfig(Message.DEFAULT_COMMAND_SUFFIX, Message.DEFAULT_QUERY_SUFFIX),
     ),
     private val messageHandlerMap: MessageHandlerMap = MessageHandlerMap(
         handlers,
