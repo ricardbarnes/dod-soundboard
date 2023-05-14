@@ -7,6 +7,8 @@ import cat.vonblum.shared.infrastructure.bus.exception.BadHandlerSuffixException
 import cat.vonblum.shared.infrastructure.bus.exception.BadMessageSuffixException
 import cat.vonblum.shared.infrastructure.bus.exception.HandlerMethodNotFoundException
 import cat.vonblum.shared.infrastructure.bus.exception.UnregisteredHandlerException
+import cat.vonblum.shared.infrastructure.bus.model.Message
+import cat.vonblum.shared.infrastructure.bus.model.MessageHandlerMap
 
 class MessageBus(
     handlers: List<Any>,

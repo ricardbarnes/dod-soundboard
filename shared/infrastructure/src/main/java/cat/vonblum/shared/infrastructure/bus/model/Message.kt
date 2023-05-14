@@ -1,4 +1,4 @@
-package cat.vonblum.shared.infrastructure.bus
+package cat.vonblum.shared.infrastructure.bus.model
 
 import cat.vonblum.shared.infrastructure.bus.config.MessageConfig
 import cat.vonblum.shared.infrastructure.bus.exception.BadMessageSuffixException
